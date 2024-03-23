@@ -2,7 +2,8 @@ import {createPublicClient, createWalletClient, formatEther, hexToString, http, 
 import {sepolia} from "viem/chains";
 import {privateKeyToAccount} from "viem/accounts";
 import {abi, bytecode,} from "../../artifacts/contracts/Ballot.sol/Ballot.json";
-import {deployerPrivateKey, providerApiKey} from "../../configs/viemConfig";
+import {connectionConfiguration} from "../../configs/rpcConfig";
+import {viemConfiguration} from "../../configs/viemConfig";
 
 async function main() {
     //CREATE PUBLIC CLIENT
@@ -11,17 +12,17 @@ async function main() {
         throw new Error("Proposals not provided");
     const publicClient = createPublicClient({
         chain: sepolia,
-        transport: http(`https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`),
+        transport: http(`${connectionConfiguration.alchemyBaseUri}/${viemConfiguration.ALCHEMY_API_KEY}`),
     });
     const blockNumber = await publicClient.getBlockNumber();
     console.log("Last block number:", blockNumber);
 
     //CREATE WALLET CLIENT
-    const account = privateKeyToAccount(`0x${deployerPrivateKey}`);
+    const account = privateKeyToAccount(`0x${viemConfiguration.PRIVATE_KEY}`);
     const deployer = createWalletClient({
         account,
         chain: sepolia,
-        transport: http(`https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`),
+        transport: http(`${connectionConfiguration.alchemyBaseUri}/${viemConfiguration.ALCHEMY_API_KEY}`),
     });
     console.log("Deployer address:", deployer.account.address);
     const balance = await publicClient.getBalance({

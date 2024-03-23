@@ -1,10 +1,9 @@
 import {createPublicClient, createWalletClient, hexToString, http,} from "viem";
 import {sepolia} from "viem/chains";
 import {abi} from "../../artifacts/contracts/Ballot.sol/Ballot.json";
-
-
 import {privateKeyToAccount} from "viem/accounts";
-import {deployerPrivateKey, providerApiKey} from "../../configs/viemConfig";
+import {connectionConfiguration} from "../../configs/rpcConfig";
+import {viemConfiguration} from "../../configs/viemConfig";
 
 async function main() {
     //RECEIVING PARAMETERS
@@ -21,7 +20,7 @@ async function main() {
     //ATTACH CONTRACT AND CHECK SELECTED OPTION
     const publicClient = createPublicClient({
         chain: sepolia,
-        transport: http(`https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`),
+        transport: http(`${connectionConfiguration.alchemyBaseUri}/${viemConfiguration.PRIVATE_KEY}`),
     });
     console.log("Proposal selected: ");
     const proposal = (await publicClient.readContract({
@@ -34,11 +33,11 @@ async function main() {
     console.log("Confirm? (Y/n)");
 
     //SEND TX ON USER CONFIRMATION
-    const account = privateKeyToAccount(`0x${deployerPrivateKey}`);
+    const account = privateKeyToAccount(`0x${viemConfiguration.PRIVATE_KEY}`);
     const voter = createWalletClient({
         account,
         chain: sepolia,
-        transport: http(`https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`),
+        transport: http(`${connectionConfiguration.alchemyBaseUri}/${viemConfiguration.ALCHEMY_API_KEY}`),
     });
     const stdin = process.openStdin();
     stdin.addListener("data", async function (d) {
