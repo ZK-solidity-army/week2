@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "deploySmartcontract": "npx ts-node ./scripts/viem/Deploy.ts Prop1 Prop2 Prop3",
-    "castVote": "npx ts-node ./scripts/viem/CastVote.ts <address> <proposalIndex>",
-    "delegate": "npx ts-node ./scripts/viem/CastVote.ts <delegate_address> <proposal_index>",
-    "vote": "npx ts-node ./scripts/viem/CastVote.ts <address> 1",
-    "giveRightToVote": "npx ts-node ./scripts/viem/DelegateVote.ts <address> <address_to_whom>",
+    "vote": "npx ts-node ./scripts/viem/CastVote.ts <address> <proposalIndex>",
+    "delegate": "npx ts-node ./scripts/viem/Delegate.ts.ts <delegate_address> <proposal_index>",
+    "deploy": "npx ts-node ./scripts/viem/Deploy.ts Prop1 Prop2 Prop3",
     "winningProposal": "npx ts-node ./scripts/viem/GetWinningProposal.ts <address>"
+    "giveRightToVote": "npx ts-node ./scripts/viem/giveRightToVote.ts <address> <address_to_whom>"
   },
   "author": "",
   "license": "ISC",
