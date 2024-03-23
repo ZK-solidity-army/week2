@@ -1,9 +1,9 @@
+import config from "../../config";
 import { createPublicClient, http, hexToString } from "viem";
 import { sepolia } from "viem/chains";
 
 import { abi } from "../../artifacts/contracts/Ballot.sol/Ballot.json";
 
-import config from "../../config";
 
 async function main() {
   const parameters = process.argv.slice(2);

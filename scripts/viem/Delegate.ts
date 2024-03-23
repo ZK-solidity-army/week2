@@ -1,10 +1,10 @@
+import config from "../../config";
 import {createPublicClient, createWalletClient, http} from "viem";
 import {privateKeyToAccount} from "viem/accounts";
 import {sepolia} from "viem/chains";
 
 import {abi} from "../../artifacts/contracts/Ballot.sol/Ballot.json";
 
-import config from "../../config";
 
 async function main() {
     const parameters = process.argv.slice(2);
