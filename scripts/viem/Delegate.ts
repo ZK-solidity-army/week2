@@ -4,6 +4,7 @@ import {sepolia} from "viem/chains";
 
 import {abi} from "../../artifacts/contracts/Ballot.sol/Ballot.json";
 import {viemConfiguration} from "../../configs/viemConfig";
+import {connectionConfiguration} from "../../configs/rpcConfig";
 
 
 async function main() {
@@ -29,16 +30,16 @@ async function delegate(
     const account = privateKeyToAccount(`0x${viemConfiguration.PRIVATE_KEY}`);
     const publicClient = createPublicClient({
         chain: sepolia,
-        transport: http(viemConfiguration.ALCHEMY_API_KEY),
+        transport: http(`${connectionConfiguration.alchemyBaseUri}/${viemConfiguration.ALCHEMY_API_KEY}`),
     });
     const walletClient = createWalletClient({
         account,
         chain: sepolia,
-        transport: http(viemConfiguration.ALCHEMY_API_KEY),
+        transport: http(`${connectionConfiguration.alchemyBaseUri}/${viemConfiguration.ALCHEMY_API_KEY}`),
     });
 
     console.log("Delegating vote to", delegateTo);
-    // machinery
+
     const hash = await walletClient.writeContract({
         address: contractAddress as `0x${string}`,
         abi,

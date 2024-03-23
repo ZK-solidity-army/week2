@@ -3,6 +3,7 @@ import { sepolia } from "viem/chains";
 
 import { abi } from "../../artifacts/contracts/Ballot.sol/Ballot.json";
 import {viemConfiguration} from "../../configs/viemConfig";
+import {connectionConfiguration} from "../../configs/rpcConfig";
 
 
 async function main() {
@@ -20,7 +21,7 @@ async function main() {
 async function readContract(contractAddress: `0x${string}`) {
   const publicClient = createPublicClient({
     chain: sepolia,
-    transport: http(viemConfiguration.ALCHEMY_API_KEY),
+    transport: http(`${connectionConfiguration.alchemyBaseUri}/${viemConfiguration.ALCHEMY_API_KEY}`),
   });
   const winningProposal = (await publicClient.readContract({
     address: contractAddress,

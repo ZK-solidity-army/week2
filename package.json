@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "vote": "npx ts-node ./scripts/viem/CastVote.ts <address> <proposalIndex>",
-    "delegate": "npx ts-node ./scripts/viem/Delegate.ts.ts <delegate_address> <proposal_index>",
     "deploy": "npx ts-node ./scripts/viem/Deploy.ts Prop1 Prop2 Prop3",
-    "winningProposal": "npx ts-node ./scripts/viem/GetWinningProposal.ts <address>"
-    "giveRightToVote": "npx ts-node ./scripts/viem/giveRightToVote.ts <address> <address_to_whom>"
+    "vote": "npx ts-node ./scripts/viem/CastVote.ts 0xE08401c7f79B60b7CFC184615b4b197941F5fBaF 2",
+    "giveRightToVote": "npx ts-node ./scripts/viem/GiveRightToVote.ts 0xE08401c7f79B60b7CFC184615b4b197941F5fBaF 0x2BF5E574FE29d1A60487341c71252512Aa41c87c",
+    "delegate": "npx ts-node ./scripts/viem/Delegate.ts 0xE08401c7f79B60b7CFC184615b4b197941F5fBaF 0x2BF5E574FE29d1A60487341c71252512Aa41c87c",
+    "winningProposal": "npx ts-node ./scripts/viem/GetWinningProposal.ts 0xE08401c7f79B60b7CFC184615b4b197941F5fBaF"
   },
   "author": "",
   "license": "ISC",

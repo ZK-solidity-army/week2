@@ -3,6 +3,7 @@ import {privateKeyToAccount} from "viem/accounts";
 import {sepolia} from "viem/chains";
 import {abi} from "../../artifacts/contracts/Ballot.sol/Ballot.json";
 import {viemConfiguration} from "../../configs/viemConfig";
+import {connectionConfiguration} from "../../configs/rpcConfig";
 
 async function main() {
     const parameters = process.argv.slice(2);
@@ -27,12 +28,12 @@ async function giveRightToVote(
     const account = privateKeyToAccount(`0x${viemConfiguration.PRIVATE_KEY}`);
     const publicClient = createPublicClient({
         chain: sepolia,
-        transport: http(viemConfiguration.ALCHEMY_API_KEY),
+        transport: http(`${connectionConfiguration.alchemyBaseUri}/${viemConfiguration.ALCHEMY_API_KEY}`),
     });
     const walletClient = createWalletClient({
         account,
         chain: sepolia,
-        transport: http(viemConfiguration.ALCHEMY_API_KEY),
+        transport: http(`${connectionConfiguration.alchemyBaseUri}/${viemConfiguration.ALCHEMY_API_KEY}`),
     });
 
     // machinery
