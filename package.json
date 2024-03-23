@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "delegate": "",
+    "vote": "npx ts-node ./scripts/viem/CastVote.ts 0xe3c392ce25492b970775de78a157677e04a617e7 1",
+    "giveRightToVote": "",
+    "winningProposal": ""
   },
+
   "author": "",
   "license": "ISC",
   "devDependencies": {
