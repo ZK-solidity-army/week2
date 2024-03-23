@@ -1,3 +1,8 @@
+# Ballot project
+
+## Usage
+
+`npx ts-node ./scripts/viem/*.ts ...`
 # Voting System Scripts
 
 This repository contains scripts to interact with a voting system smart contract on the Ethereum blockchain.
